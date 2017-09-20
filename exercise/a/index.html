@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>視窗程式設計</title>
     <style>
+      h1 {
+        text-align: center;
+      }
+      #div {
+        position: absolute;
+        float: left;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-55%);
+      }
       tr {
         border: 1px solid #000000;
       }
@@ -13,26 +23,32 @@
       a {
         color: gray;
       }
+      #clear {
+        clear: both;
+      }
     </style>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <table>
-      <tr>
-        <td>課程名稱</td><td>視窗程式設計</td>
-      </tr>
-      <tr>
-        <td>指導老師</td><td>陳鍾誠老師</td>
-      </tr>
-      <tr>
-        <td>課程時間</td><td>13:30-16:20</td>
-      </tr>
-      <tr>
-        <td>上課地點</td><td>理工大樓E321</td>
-      </tr>
-      <tr>
-        <td>課程網址</td><td><a href="https://github.com/cccnqu/wp106a">視窗程式設計 -- 使用 electron.js (金門大學 / 資訊工程系 106 上學期)</a></td>
-      </tr>
-    </table>
+    <div id="div">
+      <h1>Hello World!</h1>
+      <table>
+        <tr>
+          <td>課程名稱</td><td>視窗程式設計</td>
+        </tr>
+        <tr>
+          <td>指導老師</td><td>陳鍾誠老師</td>
+        </tr>
+        <tr>
+          <td>課程時間</td><td>13:30-16:20</td>
+        </tr>
+        <tr>
+          <td>上課地點</td><td>理工大樓E321</td>
+        </tr>
+        <tr>
+          <td>課程網址</td><td><a href="https://github.com/cccnqu/wp106a">視窗程式設計 -- 使用 electron.js (金門大學 / 資訊工程系 106 上學期)</a></td>
+        </tr>
+      </table>
+    </div>
+    <div id="clear"></div>
   </body>
 </html>
