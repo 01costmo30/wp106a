@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+      }
+      input { 
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        width:50px;
+        }  
+      #center {
+        float: left;
+      }    
+      button {
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        font-size: 16px;
+        text-align: center;
+        width: 120px;
+      }
+    </style>
+    <title>count down!</title>
+  </head>
+  <body>
+<script>
+  var myVar;
+  function CDT() {
+    var state = document.getElementById('button').innerHTML;
+    if (state == "Start to count!") {
+      var a = document.getElementById('time').value;
+      if (a < 0) {
+        alert("Please enter the right number!");
+        document.getElementById('time').value = "";
+        return;
+      }
+      document.getElementById("CountDown").innerText = a;
+      myVar = setTimeout(printTime, 1000);
+      document.getElementById('button').innerHTML = "stop!";
+    }
+    else if (state == "stop!") {
+      clearTimeout(myVar);
+      document.getElementById('button').innerHTML = "start!";
+    }
+    else if (state == "start!") {
+      myVar = setTimeout(printTime, 1000);
+      document.getElementById('button').innerHTML = "stop!";
+    }
+  }
+  function printTime() {
+    var time = document.getElementById('CountDown').innerHTML;
+    time = time-1;
+    document.getElementById('CountDown').innerHTML = time;
+    myVar = setTimeout(printTime, 1000);
+    if (time == 0) {
+      clearTimeout(myVar);
+      setTimeout(function () { document.getElementById('CountDown').innerHTML = "Time's up!"; }, 1000);
+      document.getElementById('button').innerHTML = "Start to count!";
+    }
+}
+</script>    
+    <div id="center">
+      <p id="CountDown"></p>
+      <input type="text" id="time"/>
+      <button id="button" onclick="CDT()">Start to count!</button>
+    </div>
+  </body>
+</html>
