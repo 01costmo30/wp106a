@@ -5,19 +5,43 @@
     <style>
       body {
         font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-      }
-      input { 
-        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-        width:50px;
-        }  
+        background-color: #E63946;
+      } 
       #center {
+        transform: translate(-50%, -50%);
+        text-align: center;
+        position: absolute;
         float: left;
-      }    
+        left: 50%;
+        top: 50%;
+      }  
+      #time {
+        background-color: #E63946;
+        border-width: 0px 0px 1px 0px;
+        border-color: #F1FAEE;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        color: #F1FAEE;
+        width:100px;
+      } 
+      #time::placeholder {
+        text-align: right;
+        color: #F1FAEE;
+      }
+      #CountDown {
+        font-size: 40px;
+        color: #F1FAEE;
+      } 
       button {
         font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-        font-size: 16px;
+        background-color: #E63946;
         text-align: center;
+        font-size: 16px;
+        border: 1px solid #E63946;
+        color: #F1FAEE;
         width: 120px;
+      }
+      #clear {
+        clear: both;
       }
     </style>
     <title>count down!</title>
@@ -34,7 +58,10 @@
         document.getElementById('time').value = "";
         return;
       }
-      document.getElementById("CountDown").innerText = a;
+      document.getElementById('CountDown').innerText = a;
+      document.getElementById('time').value = "";
+      document.getElementById('time').style.display = "none";
+      document.getElementById('CountDown').style.display = "block";
       myVar = setTimeout(printTime, 1000);
       document.getElementById('button').innerHTML = "stop!";
     }
@@ -47,6 +74,9 @@
       document.getElementById('button').innerHTML = "stop!";
     }
   }
+  function restart() {
+    setTimeout(function () { document.getElementById('CountDown').style.display = "none";document.getElementById("time").style.display = "block"; }, 1000);
+  }
   function printTime() {
     var time = document.getElementById('CountDown').innerHTML;
     time = time-1;
@@ -54,15 +84,16 @@
     myVar = setTimeout(printTime, 1000);
     if (time == 0) {
       clearTimeout(myVar);
-      setTimeout(function () { document.getElementById('CountDown').innerHTML = "Time's up!"; }, 1000);
+      setTimeout(function () { document.getElementById('CountDown').innerHTML = "Time's up!";restart(); }, 1000);
       document.getElementById('button').innerHTML = "Start to count!";
     }
-}
+  }
 </script>    
     <div id="center">
-      <p id="CountDown"></p>
-      <input type="text" id="time"/>
+      <span id="CountDown"></span>
+      <input type="text" id="time" placeholder="(s)"/>
       <button id="button" onclick="CDT()">Start to count!</button>
     </div>
+    <div id="clear"></div>
   </body>
 </html>
