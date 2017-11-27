@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <style>
+      html {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        background-color: #1D3557;
+        overflow: hidden;
+        padding: 0px;
+        margin: 0px;
+      }
+      #time {
+        background-color: #1D3557;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        text-align: right;
+        position: absolute;
+        height: 16px;
+        color: #F1FAEE;
+        float: right;
+        width: 270px;
+      }   
+      #content {
+        float: right;
+        height: 335px;
+      }
+      #leftcontent {
+        padding-top: 12px;
+        float: left;
+        width: 35px;
+        height: 335px;
+      } 
+      ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      #addschedule {
+        font-weight: bold;
+        text-align: center;
+        font-size: 36px;
+        padding: 5px 0;
+        height: 35px;
+        color:#457B9D;
+        width: 35px;
+        cursor: pointer;
+      }
+      #addschedulesetting {
+        background-color: #457Bff; 
+        border-radius: 10px;
+        visibility: hidden;
+        font-size: 12px;
+        position: relative;
+        padding: 15px;
+        height: 200px;
+        margin: -32px 0 0 36px;
+        width: 180px;
+      }
+      #rightcontent {
+        padding-top: 12px;
+        padding: 20px 5px 0 0;
+        float: right;
+      }
+      #timeline {
+        overflow-y: auto;
+        height: 335px;
+        width: 240px;
+        float: right;
+      }
+      #timeline::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #1D3559;
+      }
+      #timeline::-webkit-scrollbar {
+        width: 12px;
+	      background-color: #1D3559;
+      }
+      #timeline::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+	      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      	background-color: #457B9D;
+      }
+      .timelabel {
+        border-bottom: 1px solid #457B9D;
+        cursor: default;
+        height: 100px;
+        width: 220px;
+      }
+      .timelabel label {
+        font-family: Cambria, Cochin, Georgia, Simsun, Times, Times New Roman, serif;
+        font-weight: bold;
+        font-size: 12px;
+        color: #457B9D;
+      }
+      input {
+        width: 120px;
+      }
+      .time {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 36px;
+        cursor: default;
+        color: lightskyblue;
+      }
+      .AP {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: -24px;
+        font-weight: bold;
+        font-size: 12px;
+        padding: 0 0 0 4px;
+        color: lightskyblue;
+      }
+      #clear {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+<script>
+
+var data = {name:[], time:[], todo:[]};
+
+function lpad(s, len) {
+  var spad = "0000000000000000000" + s
+  return spad.substring(spad.length - len)
+}
+
+function printTime() {
+  var time = document.getElementById('time')
+  var d = new Date()
+  var h = d.getFullYear()+"-"+lpad(d.getMonth()+1,2)+"-"+lpad(d.getDate(),2)+"T"+lpad(d.getHours(),2)+":"+lpad(d.getMinutes(), 2);
+  time.innerText = lpad(d.getHours(), 2) + ':' + lpad(d.getMinutes(), 2) + ':' + lpad(d.getSeconds(), 2);
+  for (i=0; i<data.time.length; i++) {
+    if (h == data.time[i]) {
+      data.name.splice(i,1);
+      data.time.splice(i,1);
+      alert(data.todo.splice(i,1) + "的時間到囉！！");
+    }
+  }
+  setTimeout(printTime, 1000);
+}
+
+function show() {
+  document.getElementById('addschedulesetting').style.visibility = 'visible';
+}
+function hidecontent() {
+  var b = data.name.length;
+  var c = data.time.length;
+  var d = data.todo.length;
+  var e = document.getElementById('chosetime').value + "T" + document.getElementById('chosetime1').value;
+  var f = document.getElementById('todo').value;
+  data.name[b] = "test" + b;
+  data.time[c] = e;
+  data.todo[d] = f;
+  document.getElementById('addschedulesetting').style.visibility = 'hidden';
+  var g = data.time[c].charAt(11)+data.time[c].charAt(12);
+  document.getElementById(g).innerHTML += "<br/><label>"+ document.getElementById('chosetime1').value + " " + f +"</label>";
+}
+
+setTimeout(printTime, 1000);
+for (i=1; i<=24; i++) {
+  var d = new Date();
+  var a = d.getHours();
+  if (a == i) {
+    a = "#" + a;
+    window.location.href(a);
+  }
+}
+</script>
+  <div id="time"></div>
+  <div id="content">
+    <div id="leftcontent">
+      <ul>
+        <li id="addschedule" onclick="show()">+</li>
+          <ul>
+            <li id="addschedulesetting">
+              日期：<input type="date" id="chosetime"/><br/>
+              時間：<input type="time" id="chosetime1"/><br/>
+              内容：<textarea id="todo"></textarea>
+              <button id="add" onclick="hidecontent()">add!</button>
+            </li>
+          </ul>
+      </ul>
+    </div>
+      <div id="rightcontent">
+        <div id="timeline">
+          <div id="01" class="timelabel"><span class="time">1</span><span class="AP">Am</span></div>
+          <div id="02" class="timelabel"><span class="time">2</span><span class="AP">Am</span></div>
+          <div id="03" class="timelabel"><span class="time">3</span><span class="AP">Am</span></div>
+          <div id="04" class="timelabel"><span class="time">4</span><span class="AP">Am</span></div>
+          <div id="05" class="timelabel"><span class="time">5</span><span class="AP">Am</span></div>
+          <div id="06" class="timelabel"><span class="time">6</span><span class="AP">Am</span></div>
+          <div id="07" class="timelabel"><span class="time">7</span><span class="AP">Am</span></div>
+          <div id="08" class="timelabel"><span class="time">8</span><span class="AP">Am</span></div>
+          <div id="09" class="timelabel"><span class="time">9</span><span class="AP">Am</span></div>
+          <div id="10" class="timelabel"><span class="time">10</span><span class="AP">Am</span></div>
+          <div id="11" class="timelabel"><span class="time">11</span><span class="AP">Am</span></div>
+          <div id="12" class="timelabel"><span class="time">12</span><span class="AP">Am</span></div>
+          <div id="13" class="timelabel"><span class="time">1</span><span class="AP">Pm</span></div>
+          <div id="14" class="timelabel"><span class="time">2</span><span class="AP">Pm</span></div>
+          <div id="15" class="timelabel"><span class="time">3</span><span class="AP">Pm</span></div>
+          <div id="16" class="timelabel"><span class="time">4</span><span class="AP">Pm</span></div>
+          <div id="17" class="timelabel"><span class="time">5</span><span class="AP">Pm</span></div>
+          <div id="18" class="timelabel"><span class="time">6</span><span class="AP">Pm</span></div>
+          <div id="19" class="timelabel"><span class="time">7</span><span class="AP">Pm</span></div>
+          <div id="20" class="timelabel"><span class="time">8</span><span class="AP">Pm</span></div>
+          <div id="21" class="timelabel"><span class="time">9</span><span class="AP">Pm</span></div>
+          <div id="22" class="timelabel"><span class="time">10</span><span class="AP">Pm</span></div>
+          <div id="23" class="timelabel"><span class="time">11</span><span class="AP">Pm</span></div>
+          <div id="24" class="timelabel"><span class="time">12</span><span class="AP">Pm</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="clear"></div>
+  </body>
+</html>
