@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>calendar</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style>
       html {
         padding: 0px;
@@ -121,57 +122,6 @@
     </style>
   </head>
   <body>
-<script>
-
-var data = {name:[], time:[], todo:[]};
-
-function lpad(s, len) {
-  var spad = "0000000000000000000" + s
-  return spad.substring(spad.length - len)
-}
-
-function printTime() {
-  var time = document.getElementById('time')
-  var d = new Date()
-  var h = d.getFullYear()+"-"+lpad(d.getMonth()+1,2)+"-"+lpad(d.getDate(),2)+"T"+lpad(d.getHours(),2)+":"+lpad(d.getMinutes(), 2);
-  time.innerText = lpad(d.getHours(), 2) + ':' + lpad(d.getMinutes(), 2) + ':' + lpad(d.getSeconds(), 2);
-  for (i=0; i<data.time.length; i++) {
-    if (h == data.time[i]) {
-      data.name.splice(i,1);
-      data.time.splice(i,1);
-      alert(data.todo.splice(i,1) + "的時間到囉！！");
-    }
-  }
-  setTimeout(printTime, 1000);
-}
-
-function show() {
-  document.getElementById('addschedulesetting').style.visibility = 'visible';
-}
-function hidecontent() {
-  var b = data.name.length;
-  var c = data.time.length;
-  var d = data.todo.length;
-  var e = document.getElementById('chosetime').value + "T" + document.getElementById('chosetime1').value;
-  var f = document.getElementById('todo').value;
-  data.name[b] = "test" + b;
-  data.time[c] = e;
-  data.todo[d] = f;
-  document.getElementById('addschedulesetting').style.visibility = 'hidden';
-  var g = data.time[c].charAt(11)+data.time[c].charAt(12);
-  document.getElementById(g).innerHTML += "<br/><label>"+ document.getElementById('chosetime1').value + " " + f +"</label>";
-}
-
-setTimeout(printTime, 1000);
-for (i=1; i<=24; i++) {
-  var d = new Date();
-  var a = d.getHours();
-  if (a == i) {
-    a = "#" + a;
-    window.location.href(a);
-  }
-}
-</script>
   <div id="time"></div>
   <div id="content">
     <div id="leftcontent">
@@ -179,9 +129,10 @@ for (i=1; i<=24; i++) {
         <li id="addschedule" onclick="show()">+</li>
           <ul>
             <li id="addschedulesetting">
-              日期：<input type="date" id="chosetime"/><br/>
-              時間：<input type="time" id="chosetime1"/><br/>
-              内容：<textarea id="todo"></textarea>
+              Event：<input id="name" placeholder="Event name"/><br/>
+              Date：<input type="date" id="chosetime"/><br/>
+              Time：<input type="time" id="chosetime1"/><br/>
+              Detail：<textarea id="todo" placeholder="Event descruption"></textarea>
               <button id="add" onclick="hidecontent()">add!</button>
             </li>
           </ul>
@@ -217,5 +168,6 @@ for (i=1; i<=24; i++) {
       </div>
     </div>
     <div id="clear"></div>
+    <script src="createchildwindow.js"></script>
   </body>
 </html>

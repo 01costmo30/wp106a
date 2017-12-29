@@ -2,53 +2,49 @@ const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let win
 
-function createWindow () {
-  // Create the browser window.
-//  win = new BrowserWindow({width: 100, height: 50, frame: false})
-  win = new BrowserWindow({width: 290, height: 400, frame: true, resizable: false})
-  win.setMenu(null)
+function createwindow () {
+    win = new BrowserWindow({width: 290, height: 400, frame: true, resizable: false, show: false})
+    win.setMenu(null)
 
-  // and load the index.html of the app.
-  win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+    win.loadURL(`file://${__dirname}/index.html`)
 
-  // Emitted when the window is closed.
-  win.on('closed', () => {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    win = null
-  })
+    // showchildwindow()
+
+    win.once('ready-to-show', () => {
+        win.show()
+    })
+
+    win.on('close', () => {
+        win = null
+    })
+}
+exports.showchildwindow = () => {
+    let child = new BrowserWindow({parent: win ,width: 235, height: 200, frame: false, transparent: true, show: false})
+    child.setMenu(null)
+    
+    child.loadURL(`file://${__dirname}/child.html`)
+
+    child.once('ready-to-show', () => {
+        child.show()
+    })
+
+    child.once('close', () => {
+        child = null
+    })
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createwindow)
 
-// Quit when all windows are closed.
-app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+app.on('window-all-close', () => {
+    if (process.platform !== 'drawin') {
+        app.quit()
+    }
 })
 
-app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (win === null) {
-    createWindow()
-  }
+app.on('active', () => {
+    if (win === null) {
+        createwindow()
+    }
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
