@@ -1,0 +1,96 @@
+<!doc html>
+<html>
+    <head><meta charest = 'utf-8'>
+        <title>create child window</title>
+        <style>
+            body {
+                margin: 0 auto;
+                background-color: transparent;
+                font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            }
+            .topbar {
+                top: 0;
+                left: 0;
+                width: 100%;
+                color: #D6E5E3;
+                height: 25px;
+                margin: 0 auto;
+                position: absolute;
+                text-align: center;
+                background-color: #517664;
+                -webkit-app-region: drag;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            .topbar #button {
+                float: right;
+                width: 70px;
+                height: 100%;
+            }
+            #button #close, #button #maximize, #button #minimize {
+                width: 33%;
+                float: right;
+                height: 100%;
+                transition: all ease-in-out .2s;
+                -webkit-app-region: no-drag;
+            }
+            #close {
+                border-top-right-radius: 5px;
+            }
+            #close:hover {
+                background-color: #2D3319;
+            }
+            #maximize:hover {
+                background-color: #2D3319;
+            }
+            #minimize:hover {
+                background-color: #2D3319;
+            }
+            .content {
+                position: absolute;
+                top:25px;
+                left: 0;
+                width: 100%;
+                height: 175px;
+                background-color: #9FD8CB;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+            #title, #time, #todo {
+                margin: 0 0 0 10px;
+                font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+                
+            }
+            #title {
+                font-size: 24px;
+                font-family: 'Microsoft JhengHei', sans-serif;
+            }
+            #time {
+                font-size: 12px;
+            }
+            .clear {
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="topbar">
+                <nav>
+                    <div id="button">
+                        <div id="close"><span>x</span></div>
+                        <div id="minimize"><span>-</span></div>
+                    </div>
+                    <div class="clear"></div>
+                    </nav>
+            </div>
+            <div class="content">
+                <label id="title"></label>
+                <label id="time"></label>
+                <div id="todo"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <script src="child.js"></script>
+    </body>
+</html>

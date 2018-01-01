@@ -1,7 +1,3 @@
-# 專案作品
+# 參考：
 
-作品     |  專案網址 (github)
----------|-------------------------------
-作品名稱  | https://github.com/path
-
-#P.S. main.js檔我還沒自己整個改掉自己寫QQ
+https://github.com/electron/electron/blob/v1.6.10/docs/tutorial/quick-start.md
