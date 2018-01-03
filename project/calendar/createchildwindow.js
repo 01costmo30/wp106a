@@ -2,8 +2,9 @@ const remote = require('electron').remote
 const main = remote.require('./main.js')
 // const BrowserWindow = remote
 
-function getchildwindow() {
-    main.showchildwindow()
+function getchildwindow(a,b,c) {
+  // child.showcontent()
+  main.showchildwindow(a,b,c)
 }
 
 var data = {name:[], time:[], todo:[]};
@@ -21,10 +22,22 @@ function printTime() {
   for (i=0; i<data.time.length; i++) {
     if (h == data.time[i]) {
       var j = data.time.splice(i,1);
+       var k = data.name.splice(i,1);
+      var l = data.todo.splice(i,1);
       var goodbye = document.getElementById(j);
       goodbye.parentNode.removeChild(goodbye);
-      getchildwindow();
-      // alert(data.name.splice(i,1) + " " + data.todo.splice(i,1));
+      var sh = j.toString().substring(11,13);
+      if (sh > 12) {
+        sh = parseInt(sh)-12;
+        var st = "下午" + sh.toString() + j.toString().substring(13,16);
+      }
+      else if (sh < 12) {
+        var st = "上午" + sh.toString() + j.toString().substring(13,16);
+      }
+      else if (sh == 12) {
+        var st = "下午" + sh.toString() + j.toString().substring(13,16);
+      }
+      getchildwindow(st, k, l);
     }
   }
   setTimeout(printTime, 1000);

@@ -20,11 +20,15 @@ function createwindow () {
         win = null
     })
 }
-exports.showchildwindow = () => {
+exports.showchildwindow = (a, b, c) => {
     let child = new BrowserWindow({parent: win ,width: 235, height: 200, frame: false, transparent: true, show: false})
     child.setMenu(null)
     
     child.loadURL(`file://${__dirname}/child.html`)
+
+    child.webContents.on('did-finish-load', () => {
+        child.webContents.send('itwork', {'work': [a, b, c]})
+    })
 
     child.once('ready-to-show', () => {
         child.show()

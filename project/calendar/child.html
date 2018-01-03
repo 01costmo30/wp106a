@@ -6,6 +6,7 @@
             body {
                 margin: 0 auto;
                 background-color: transparent;
+                font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
             }
             .topbar {
                 top: 0;
@@ -31,7 +32,7 @@
                 float: right;
                 height: 100%;
                 transition: all ease-in-out .2s;
-                 -webkit-app-region: no-drag;
+                -webkit-app-region: no-drag;
             }
             #close {
                 border-top-right-radius: 5px;
@@ -55,6 +56,18 @@
                 border-bottom-left-radius: 10px;
                 border-bottom-right-radius: 10px;
             }
+            #title, #time, #todo {
+                margin: 0 0 0 10px;
+                font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+                
+            }
+            #title {
+                font-size: 24px;
+                font-family: 'Microsoft JhengHei', sans-serif;
+            }
+            #time {
+                font-size: 12px;
+            }
             .clear {
                 clear: both;
             }
@@ -72,7 +85,9 @@
                     </nav>
             </div>
             <div class="content">
-                <h1>456</h1>
+                <label id="title"></label>
+                <label id="time"></label>
+                <div id="todo"></div>
             </div>
             <div class="clear"></div>
         </div>
