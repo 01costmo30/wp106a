@@ -2,7 +2,10 @@
 
 習題    | 連結
 --------|----------------
-1       | [file](file.md)
+1       | [file](https://github.com/01costmo30/wp106a/tree/master/exercise/a)
+2       | [file](https://github.com/01costmo30/wp106a/tree/master/exercise/b)
+3       | [file](https://github.com/01costmo30/wp106a/tree/master/exercise/02)
+4       | [file](https://github.com/01costmo30/wp106a/tree/master/exercise/03-markdowneditor)
 
 個人練習   |備注          |參考資源
 ----------|--------------|--------------
