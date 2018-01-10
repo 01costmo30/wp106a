@@ -4,4 +4,4 @@
 ----------|-------------------------------|-----------------------------
 當日行事曆 | [calendar](https://github.com/01costmo30/wp106a/tree/master/project/calendar)|[reference resource](https://electronjs.org/docs/api/web-contents)
 
-#P.S. 若可以想弄成可以存在本地資料夾的那種方式（· · ）
+#P.S. 之後想弄成可在背景執行的方式（· · ）
